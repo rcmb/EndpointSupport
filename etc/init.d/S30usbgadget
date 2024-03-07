@@ -1,0 +1,46 @@
+#!/bin/sh
+
+GADGET_DIR=/config/usb_gadget/g1
+OLDPWD=$(pwd)
+
+printf "Starting USB gadget: "
+
+modprobe usb_f_ncm.ko
+
+usb_idVendor="0x1b9f"
+usb_idProduct="0x0105"
+usb_bcdDevice="0x0100"
+usb_bcdUSB="0x0200"
+usb_serialnr="000000"
+usb_product="USB Device"
+
+usb_iserialnumber="12345678ABCD"
+usb_imanufacturer="GHI Electronics"
+usb_iproduct="Endpoint"
+
+mkdir -p /config
+mount -t configfs none /config
+mkdir ${GADGET_DIR}
+cd ${GADGET_DIR}
+
+echo ${usb_bcdUSB} > bcdUSB
+echo ${usb_idVendor} > idVendor # GHI VID
+echo ${usb_idProduct} > idProduct # GHI PID
+echo ${usb_bcdDevice} > bcdDevice
+
+#0x409 = english strings...
+mkdir strings/0x409
+
+echo ${usb_iserialnumber} > strings/0x409/serialnumber
+echo ${usb_imanufacturer} > strings/0x409/manufacturer
+echo ${usb_iproduct} > strings/0x409/product
+
+mkdir -p configs/c.1
+mkdir functions/ncm.usb0
+
+ln -s functions/ncm.usb0 configs/c.1/
+
+ls /sys/class/udc/ > UDC
+
+cd ${OLDPWD}
+
