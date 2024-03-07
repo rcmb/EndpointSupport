@@ -4,8 +4,4 @@
 - Plugin the Endpoint to the Mac
 - Endpoint should be visible under Network
 
-![image](https://github.com/rcmb/EndpointSupport/assets/26347646/e0845b03-2377-45d9-8072-90285e2050e8)
-
-
-
-
+![image](https://github.com/rcmb/EndpointSupport/assets/26347646/27ce87b6-5c27-4ad0-94a6-f52f98b7bd62)
