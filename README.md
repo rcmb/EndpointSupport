@@ -1,8 +1,3 @@
-# EndpointSupport
-Extensions and such for GHI Endpoint
-
-Hopefully useful stuff for the GHI Endpoint
-
 ## Enabling CDC - NCM on a Mac 
 
 - Replace the init script /etc/init.d/S30usbgadget with the one from this repo.
